@@ -38,6 +38,19 @@ spring:
             - PUT
             - DELETE
             - PATCH
+      routes:
+        - id: microservice-one
+          uri: lb://microservice-one
+          predicates:
+            - Path=/api/microservice-one/**
+          filters:
+            - StripPrefix=2
+        - id: microservice-two
+          uri: lb://microservice-two
+          predicates:
+            - Path=/api/microservice-two/**
+          filters:
+            - StripPrefix=2
       
 
 ## We enable the Actuator API to be able to access <<host>>/actuator/gateway/routes
